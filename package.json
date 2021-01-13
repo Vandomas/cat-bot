@@ -1,0 +1,20 @@
+{
+  "name": "cat-bot",
+  "version": "1.0.0",
+  "description": "Simple bot for feline chat",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "bot",
+    "admin bot",
+    "telegraf"
+  ],
+  "author": "vandomas",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.38.0"
+  }
+}
