@@ -40,14 +40,14 @@ bot.hears([regExObj.kick, regExObj.mute, regExObj.unmute, regExObj.ban, regExObj
 
     const userId = msg.message.reply_to_message.from.id; // user to action
     if (user === userId) {
-        return msg.reply('<b>Не не не, сам давай</b>');
+        return msg.reply('<b>Не не не, сам давай</b>', { parse_mode: 'HTML' });
     }
 
     if (text.match(regExObj.kick)) {
         await msg.kickChatMember(userId);
         const successfully = await msg.unbanChatMember(userId);
         if (successfully) {
-            return msg.reply(`<b>Выгнал его отсюда как лоха, хех</b>`);
+            return msg.reply(`<b>Выгнал его отсюда как лоха, хех</b>`, { parse_mode: 'HTML' });
         }
     } else if (text.match(regExObj.unmute)) {
         const successfully = await msg.restrictChatMember(userId, {
@@ -56,7 +56,7 @@ bot.hears([regExObj.kick, regExObj.mute, regExObj.unmute, regExObj.ban, regExObj
             can_add_web_page_previews: true
         });
         if (successfully) {
-            return msg.reply(`<b>Ты дал ему дар речи!</b>`);
+            return msg.reply(`<b>Ты дал ему дар речи!</b>`, { parse_mode: 'HTML' });
         }
     } else if (text.match(regExObj.mute)) {
         const count = +text.match(regExObj.mute)[5] || 1;
@@ -73,17 +73,17 @@ bot.hears([regExObj.kick, regExObj.mute, regExObj.unmute, regExObj.ban, regExObj
             can_add_web_page_previews: false, until_date: (Date.now() / 1000 | 0) + count * x
         });
         if (successfully) {
-            return msg.reply(`<b>Успешно вставил кляп в рот!</b>`);
+            return msg.reply(`<b>Успешно вставил кляп в рот!</b>`, { parse_mode: 'HTML' });
         }
     } else if (text.match(regExObj.unban)) {
         const successfully = await msg.unbanChatMember(userId);
         if (successfully) {
-            return msg.reply(`<b>Я надеюсь он заслужил разбана...</b>`);
+            return msg.reply(`<b>Я надеюсь он заслужил разбана...</b>`, { parse_mode: 'HTML' });
         }
     } else if (text.match(regExObj.ban)) {
         const successfully = await msg.kickChatMember(userId);
         if (successfully) {
-            return msg.reply(`<b>Отправился в путешествие на крыльях бана!</b>`);
+            return msg.reply(`<b>Отправился в путешествие на крыльях бана!</b>`, { parse_mode: 'HTML' });
         }
     }
 });
