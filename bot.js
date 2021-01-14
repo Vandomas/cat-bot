@@ -14,7 +14,7 @@ bot.use((_, next) => next());
 bot.catch(err => console.log(err));
 
 bot.on('new_chat_members', async (msg) => {
-    const chatId = msg.message.chat.id
+    const chatId = msg.message.chat.id;
     for (const userObj of msg.message.new_chat_members) {
         const userId = userObj.id;
         const firstName = userObj.first_name || '';
@@ -22,7 +22,7 @@ bot.on('new_chat_members', async (msg) => {
 
         if (chatId === botConfig.catGroupId) {
             await msg.reply(
-                `Привет <b><a href='tg://user?id=${userId}'>${escapeHtml(firstName + lastName)}</a></b>!\n` +
+                `Привет <b><a href='tg://user?id=${userId}'>${escapeHtml(firstName + '' + lastName)}</a></b>!\n` +
                 `Добро пожаловать к нам в <b>${escapeHtml(msg.chat.title)}</b>!`,
                 { parse_mode: 'HTML' }
             );
@@ -89,7 +89,7 @@ bot.hears([regExObj.kick, regExObj.mute, regExObj.unmute, regExObj.ban, regExObj
 });
 
 bot.start(({ reply }) => reply(`<b>Мяу!</b>`, { parse_mode: 'HTML' }));
-bot.help(({ reply }) => reply(`<b>Муррр!</b>`, { parse_mode: 'HTML', reply_markup: {inline_keyboard: [[{text: '» 💿Bot source »', url: 'https://github.com/Vandomas/cat-bot'}]]} }));
+bot.help(({ reply }) => reply(`<b>Муррр!</b>`, { parse_mode: 'HTML', reply_markup: { inline_keyboard: [[{ text: '» 💿Bot source »', url: 'https://github.com/Vandomas/cat-bot' }]] } }));
 
 const escapeHtml = (str) => str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 bot.launch().then(() => console.log('Bot launched!'))
