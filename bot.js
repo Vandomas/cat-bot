@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Telegraf } = require('telegraf');
 const fs = require('fs');
 
@@ -16,13 +17,12 @@ bot.catch(err => console.log(err));
 bot.on('new_chat_members', async (msg) => {
     const chatId = msg.message.chat.id;
     for (const userObj of msg.message.new_chat_members) {
-        const userId = userObj.id;
         const firstName = userObj.first_name || '';
         const lastName = userObj.last_name || '';
 
         if (chatId === botConfig.catGroupId) {
             await msg.reply(
-                `Привет <b><a href='tg://user?id=${userId}'>${escapeHtml(firstName + '' + lastName)}</a></b>!\n` +
+                `Привет <b><a href='tg://user?id=${userObj.id}'>${escapeHtml(firstName + ' ' + lastName)}</a></b>!\n` +
                 `Добро пожаловать к нам в <b>${escapeHtml(msg.chat.title)}</b>!`,
                 { parse_mode: 'HTML' }
             );
